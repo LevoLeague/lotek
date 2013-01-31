@@ -7,7 +7,7 @@ class LibratoMetrics
     @connection ||= Faraday::Connection.new('https://metrics-api.librato.com') do |b|
       b.use FaradayMiddleware::EncodeJson
       b.adapter Faraday.default_adapter
-      b.use Faraday::Response::RaiseError
+      # b.use Faraday::Response::RaiseError
       b.use FaradayMiddleware::ParseJson, :content_type => /\bjson$/
     end.tap do |c|
       c.headers[:content_type] = 'application/json'
